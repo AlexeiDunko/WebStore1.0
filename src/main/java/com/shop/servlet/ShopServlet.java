@@ -1,4 +1,6 @@
-package com.WebStore;
+package com.shop.servlet;
+
+import com.shop.entity.Item;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -6,14 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.awt.datatransfer.DataFlavor;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/shop")
-public class ShopServlet<action> extends HttpServlet {
-    private DataFlavor request;
+public class ShopServlet extends HttpServlet {
 
     private Item getItemById(String itemId) {
         return null;
@@ -53,23 +53,21 @@ public class ShopServlet<action> extends HttpServlet {
         } else if ("Submit".equals(action)) {
             // redirect to checkout page
             response.sendRedirect("checkout.jsp");
+        } else if ("Submit".equals(action)) {
+            // calculate total cost
+            session = request.getSession();
+            List<Item> cart = (List<Item>) session.getAttribute("cart");
+            double total = 0;
+            for (Item item : cart) {
+                total += item.getPrice();
+            }
+            // save total to session
+            session.setAttribute("total", total);
+            // redirect to checkout page
+            response.sendRedirect("checkout.jsp");
         }
         // redirect back to shop page
         response.sendRedirect("shop.jsp");
-
-    } else if("Submit".void equals(action)){
-        // calculate total cost
-        HttpSession session;
-        session = request.getSession();
-        List<Item> cart = (List<Item>) session.getAttribute("cart");
-        double total = 0;
-        for (Item item : cart) {
-            total += item.getPrice();
-        }
-        // save total to session
-        session.setAttribute("total", total);
-        // redirect to checkout page
-        response.sendRedirect("checkout.jsp");
     }
 }
 

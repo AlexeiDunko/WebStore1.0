@@ -1,4 +1,4 @@
-package com.WebStore;
+package com.shop.entity;
 
 public class Item {
     public double getPrice() {

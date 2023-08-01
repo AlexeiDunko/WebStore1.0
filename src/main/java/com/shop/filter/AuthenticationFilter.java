@@ -1,4 +1,4 @@
-package com.WebStore;
+package com.shop.filter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
