@@ -22,7 +22,7 @@ public class AuthenticationFilter implements Filter {
         HttpSession session = request.getSession(false);
         // if session does not exist or user did not agree with terms, redirect to error page
         if (session == null || session.getAttribute("agreed") == null) {
-            response.sendRedirect("src/main/webapp/jsp/error.jsp");
+            response.sendRedirect("error.jsp");
             return;
         }
         chain.doFilter(req, res);

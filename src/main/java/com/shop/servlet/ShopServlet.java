@@ -26,7 +26,7 @@ public class ShopServlet extends HttpServlet {
         // check if user agreed with terms
         String agree = request.getParameter("agree");
         if (agree == null) {
-            response.sendRedirect("src/main/webapp/jsp/error.jsp");
+            response.sendRedirect("error.jsp");
             return;
         }
         // save user's name and agreement to session
@@ -34,7 +34,7 @@ public class ShopServlet extends HttpServlet {
         session.setAttribute("name", name);
         session.setAttribute("agreed", true);
         // redirect to shop page
-        response.sendRedirect("src/main/webapp/jsp/shop.jsp");
+        response.sendRedirect("shop.jsp");
 
         String action = request.getParameter("action");
         if ("Add Item".equals(action)) {
@@ -52,7 +52,7 @@ public class ShopServlet extends HttpServlet {
             cart.add(item);
         } else if ("Submit".equals(action)) {
             // redirect to checkout page
-            response.sendRedirect("src/main/webapp/jsp/checkout.jsp");
+            response.sendRedirect("checkout.jsp");
         } else if ("Submit".equals(action)) {
             // calculate total cost
             session = request.getSession();
@@ -64,10 +64,10 @@ public class ShopServlet extends HttpServlet {
             // save total to session
             session.setAttribute("total", total);
             // redirect to checkout page
-            response.sendRedirect("src/main/webapp/jsp/checkout.jsp");
+            response.sendRedirect("checkout.jsp");
         }
         // redirect back to shop page
-        response.sendRedirect("src/main/webapp/jsp/shop.jsp");
+        response.sendRedirect("shop.jsp");
     }
 }
 
