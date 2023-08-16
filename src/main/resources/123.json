@@ -1,0 +1,65 @@
+{
+  "order": 0,
+  "index_patterns": [
+    "dgb-customers-*"
+  ],
+  "settings": {
+    "index": {
+      "number_of_shards": "2",
+      "number_of_replicas": "1"
+    }
+  },
+  "mappings": {
+    "_source": {
+      "enabled": true
+    },
+    "properties": {
+      "customerId": {
+        "type": "keyword"
+      },
+      "name": {
+        "type": "keyword"
+      },
+      "dateOfBirth": {
+        "format": "yyyy-MM-dd",
+        "type": "date"
+      },
+      "documentNumber": {
+        "type": "keyword"
+      },
+      "workVisaNumber": {
+        "type": "keyword"
+      },
+      "email": {
+        "type": "keyword"
+      },
+      "phoneNumber": {
+        "type": "keyword"
+      },
+      "wallets": {
+        "type": "nested",
+        "properties": {
+          "walletId": {
+            "type": "keyword"
+          },
+          "reference": {
+            "type": "keyword"
+          },
+          "customerId": {
+            "type": "keyword"
+          },
+          "customerName": {
+            "type": "keyword"
+          },
+          "status": {
+            "type": "keyword"
+          }
+        }
+      }
+    }
+  },
+  "aliases": {
+    "dgb-customers": {
+    }
+  }
+}
